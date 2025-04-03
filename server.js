@@ -1,23 +1,36 @@
-import express from "express"
-import cors from "cors"
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import { connectDB } from "./config/db.js";
+import authRoutes from "./routes/auth.js";
 
-//app config
-const app = express()
-const port = 4000
+// Load environment variables
+dotenv.config();
 
-//middleware
-app.use(express.json())
-app.use(cors())
+// Connect to MongoDB
+connectDB();
 
-//db connection
+// App config
+const app = express();
 
+// Middleware
+app.use(express.json());
+app.use(
+    cors({
+        origin: "*", // Allow all origins (Change in production)
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    })
+);
 
-//api endpoints
-
+// Default route
 app.get("/", (req, res) => {
-    res.send("API Working")
-})
+    res.send("✅ Server is running on port 4000!");
+});
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`)
-})
+// Authentication routes
+app.use("/api/auth", authRoutes);
+
+// Start the server on PORT 4000
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
