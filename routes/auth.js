@@ -32,25 +32,53 @@ router.post("/register", async (req, res) => {
     }
 });
 
-// Login
+// // Login
+// router.post("/login", async (req, res) => {
+//     const { email, password } = req.body;
+//     console.log("Login request for:", email);
+
+//     try {
+//         const user = await User.findOne({ email });
+//         if (!user) {
+//             console.log("❌ User not found");
+//             return res.status(400).json({ message: "Invalid credentials" });
+//         }
+
+//         const isMatch = await bcrypt.compare(password, user.password);
+//         if (!isMatch) {
+//             console.log("❌ Incorrect password");
+//             return res.status(400).json({ message: "Invalid credentials" });
+//         }
+
+//         console.log("✅ Login successful");
+//         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+//         res.json({ token, userId: user._id });
+//     } catch (error) {
+//         console.error("Login error:", error);
+//         res.status(500).json({ message: "Server error" });
+//     }
+// });
+// Login (TEMP BYPASS)
 router.post("/login", async (req, res) => {
-    const { email, password } = req.body;
+    console.log("⚠️ TEMP LOGIN BYPASS — always successful");
 
-    try {
-        const user = await User.findOne({ email });
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-            return res.status(400).json({ message: "Invalid credentials" });
-        }
+    // Dummy user data
+    const fakeUser = {
+        _id: "1234567890",
+        name: "Test User",
+        email: "test@example.com"
+    };
 
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-        res.json({ token, userId: user._id });
-    } catch (error) {
-        console.error("Login error:", error);
-        res.status(500).json({ message: "Server error" });
-    }
+    // Dummy token string
+    const token = "fake-jwt-token";
+
+    res.status(200).json({
+        token,
+        userId: fakeUser._id
+    });
 });
 
-// Logout (for token-based auth, this is handled client-side)
+// Logout
 router.get("/logout", (req, res) => {
     res.json({ message: "Logged out (client-side token removed)" });
 });
