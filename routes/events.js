@@ -5,13 +5,16 @@ const router = express.Router();
 
 // GET all events
 router.get('/', async (req, res) => {
-  try {
-    const events = await EventModel.find();
-    res.status(200).json(events);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+    console.log("🚀 /events GET endpoint hit");
+    try {
+      const events = await EventModel.find();
+      res.status(200).json(events);
+    } catch (error) {
+      console.error("❌ Error fetching events:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
 
 // POST a new event
 router.post('/', async (req, res) => {
