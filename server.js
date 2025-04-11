@@ -1,7 +1,7 @@
 import express from "express";
 import eventRoutes from './routes/events.js';
 import authRoutes from "./routes/auth.js";
-
+import { fetchInstagramPosts } from './insta.js';
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
@@ -38,6 +38,18 @@ app.get("/", (req, res) => res.send("✅ Server is running on port 4000!"));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/events", eventRoutes);
+
+app.get('/insta', async (req, res) => {
+  try {
+    const profileURL = 'https://www.instagram.com/taarangana/';
+    const posts = await fetchInstagramPosts(profileURL);
+    res.json({ success: true, posts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Failed to fetch Instagram posts' });
+  }
+});
+
 
 // ✅ Start server
 const PORT = process.env.PORT || 4000;
