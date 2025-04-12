@@ -39,7 +39,7 @@ const staticEvents = [
     venue: "IGDTUW Auditorium",
     genre: "tech",
     college: "igdtuw",
-    image: "https://images.unsplash.com/photo-1581092917730-87d94dd4c3a2",
+    image: "https://thedailytexan.com/wp-content/uploads/2019/09/coding_2019-09-14_Terminal_Coding_Competition_Joshua.Guenther13782-900x600.jpg",
     registeration_link: "https://example.com/event/3",
     registration_deadline: new Date("2025-04-20"),
     createdAt: new Date()
@@ -81,7 +81,7 @@ const staticEvents = [
     venue: "IGDTUW Auditorium",
     genre: "Cultural",
     college: "igdtuw",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    image: "https://images.wanderon.in/blogs/new/2024/09/grub-fest.jpg",
     registeration_link: "https://example.com/event/6",
     registration_deadline: new Date("2025-04-20"),
     createdAt: new Date()
@@ -147,7 +147,7 @@ const staticEvents = [
 const categories = ["Hackathon", "webinar", "fest", "mun/debate", "competition"];
 const genres = ["Cultural", "sports", "art", "theatre", "drama", "finance", "tech"];
 const imageUrls = [
-  "https://images.unsplash.com/photo-1551836022-4c4c79ecde51",
+  "https://images.wanderon.in/blogs/new/2024/09/grub-fest.jpg",
   "https://images.unsplash.com/photo-1581092917730-87d94dd4c3a2",
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
   "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
